@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+{% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.1.1/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.1.1/ui-bootstrap.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/vendors/dirPagination.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/controllers/main.js' %}"></script>
+{% endblock %}
+{% block main %}
+    <div class="pull-right btn btn-warning">
+        <a href="{% url 'pages:logout' %}" class="text-success">Logout</a>
+    </div>
+    <div ng-app="getEmailsApp" ng-controller="MainCtrl as mc" ng-cloak>
+        <div style="margin: 100px auto;" class="text-center">
+            <h1>Emails</h1>
+            <div class="table-responsive" ng-if="mc.loaded">
+                <table class="table table-striped">
+                    <tr>
+                        <th style="width: 20%;" class="text-center">FROM</th>
+                        <th style="width: 20%;" class="text-center">DATE</th>
+                        <th style="width: 20%;" class="text-center">SUBJECT</th>
+                        <th style="width: 40%;" class="text-center">TEXT</th>
+                    </tr>
+                    <tr dir-paginate="email in mc.emails | itemsPerPage: 5">
+                        <td>[{ email.data.From }]</td>
+                        <td>[{ email.data.Date }]</td>
+                        <td>[{ email.data.Subject }]</td>
+                        <td>[{ email.data.snippet }]</td>
+                    </tr>
+                </table>
+            </div>
+            <div ng-if="mc.error" class="bg-danger" style="width: 100%;">[{ mc.error }]</div>
+            <div ng-if="mc.loading" class="bg-success" style="width: 100%;">Getting data, please wait.</div>
+            <dir-pagination-controls></dir-pagination-controls>
+        </div>
+    </div>
+{% endblock %}

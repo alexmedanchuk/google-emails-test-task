@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load static %}
+{% block main %}
+    <div style="width: 400px; margin: auto; text-align: center;">
+        <h1>Welcome to emails app</h1>
+        <a href="{% url 'social:begin' 'google-oauth2' %}">
+            <div class="btn btn-primary" style="width: 100%;">Login with Google</div>
+        </a>
+    </div>
+{% endblock %}
