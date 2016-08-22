@@ -2,7 +2,7 @@ version: '2'
 services:
   web:
     build: .
-    command: bash -c "cd /code && python ./manage.py migrate && python ./manage.py runserver 0.0.0.0:8000"
+    command: bash -c "cd /code/google_emails && python ./manage.py migrate && python ./manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/code
     ports:
