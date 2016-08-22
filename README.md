@@ -1,4 +1,4 @@
-# Retrive Google emails App
+# Retrieve Google emails App
 
 ## How to run
 - Clone this repo, you need docker-compose v1.8 to be installed
